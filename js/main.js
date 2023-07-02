@@ -1,5 +1,5 @@
-import './random-generator.js';
-import { getPhotos, AMOUNT } from './get-object.js';
+import { getPhotos } from './data.js';
+import { AMOUNT } from "./constants.js";
 
 console.log(getPhotos(AMOUNT));
 
