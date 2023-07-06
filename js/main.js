@@ -1,6 +1,5 @@
 import { getPhotos } from './data.js';
-import { AMOUNT } from "./constants.js";
+import { AMOUNT } from './constants.js';
+import { createPictures } from './render-picture.js'
 
-console.log(getPhotos(AMOUNT));
-
-
+createPictures(getPhotos(AMOUNT));
