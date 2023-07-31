@@ -1,6 +1,6 @@
-import { openModal } from "./big-picture.js";
+import { openModal } from './big-picture.js';
 
-const pictureTemplate = document.querySelector('#picture').content.querySelector('.picture');//!инфо с шаблона
+const pictureTemplate = document.querySelector('#picture').content.querySelector('.picture');
 const picturesList = document.querySelector('.pictures');
 
 const photos = [];
@@ -20,7 +20,7 @@ const removePictures = () => {
   document.querySelectorAll('.picture').forEach((card) => {
     card.remove();
   });
-}
+};
 
 const createPictures = (pictures) => {
   removePictures();

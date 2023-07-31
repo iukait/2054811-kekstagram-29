@@ -104,7 +104,6 @@ const setOriginalFilter = () => {
 };
 
 effectsList.addEventListener('change', (evt) => {
-  console.log(evt.target);
   if (evt.target.name === 'effect') {
     updateSliderOption(evt.target.value);
     renderEffect(evt.target.value);
@@ -114,7 +113,6 @@ effectsList.addEventListener('change', (evt) => {
       showSlider();
     }
   }
-
 });
 
 sliderElement.noUiSlider.on('update', () => {
@@ -123,7 +121,7 @@ sliderElement.noUiSlider.on('update', () => {
 });
 
 const resetVisualEffect = () => {
-  imagePreview.style.filter = ''
+  imagePreview.style.filter = '';
 };
 
 const resetEffects = () => {
@@ -132,6 +130,5 @@ const resetEffects = () => {
   resetVisualEffect();
 };
 
-
-export { resetEffects }
+export { resetEffects };
 

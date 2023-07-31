@@ -1,5 +1,5 @@
 import { checkLength } from './utils.js';
-import { MAX_MESSAGE_LENGTH, MAX_HASTAG_COUNT, VALID_SYMBOLS, MAX_HASTAG_LENGTH } from './constants.js';
+import { MAX_MESSAGE_LENGTH, MAX_HASTAG_COUNT, VALID_SYMBOLS } from './constants.js';
 
 const form = document.querySelector('.img-upload__form');
 const messageField = document.querySelector('.text__description');
@@ -18,20 +18,17 @@ const normalizeTags = (tagString) => tagString
   .split(' ')
   .filter((tag) => tag.length > 0);
 
-const validateMessage = value =>
-  checkLength(value, MAX_MESSAGE_LENGTH);
+const validateMessage = (value) => checkLength(value, MAX_MESSAGE_LENGTH);
 
 const hasValidTag = (value) => normalizeTags(value).every((tag) => VALID_SYMBOLS.test(tag));
-
 
 const hasValidCount = (value) => normalizeTags(value).length <= MAX_HASTAG_COUNT;
 const hasUniqTag = (value) => normalizeTags(value).length === new Set(normalizeTags(value)).size;
 
-
 pristine.addValidator(
   hashTagField,
   hasValidTag,
-  `строка после решётки должна состоять из букв и чисел и не может содержать пробелы, спецсимволы (#, @, $ и т. п.), символы пунктуации (тире, дефис, запятая и т. п.), эмодзи и т. д`,
+  'строка после решётки должна состоять из букв и чисел и не может содержать пробелы, спецсимволы (#, @, $ и т. п.), символы пунктуации (тире, дефис, запятая и т. п.), эмодзи и т. д',
   1,
   true
 );
@@ -48,7 +45,7 @@ pristine.addValidator(
 pristine.addValidator(
   hashTagField,
   hasUniqTag,
-  `один и тот же хэш-тег не может быть использован дважды`,
+  'один и тот же хэш-тег не может быть использован дважды',
   3,
   true
 );
@@ -61,4 +58,4 @@ pristine.addValidator(
 
 const validateForm = () => pristine.validate();
 
-export { validateForm }
+export { validateForm };

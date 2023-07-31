@@ -1,41 +1,46 @@
-const successTemplate = document.querySelector('#success').content.querySelector('.success');
-const errorTemplate = document.querySelector('#error').content.querySelector('.error');
+import { onEscapeForm } from './form.js';
 
-const closeSuccess = () => {
-  document.querySelector('.success').remove();
+const popUpTemplates = {
+  success: document.querySelector('#success').content.querySelector('.success'),
+  error: document.querySelector('#error').content.querySelector('.error')
+};
 
-}
+const closePopUp = () => {
+  if (document.querySelector('.pop-up').classList.contains('error')) {
+    document.addEventListener('keydown', onEscapeForm);
+  }
 
-const showSuccess = () => {
-  const successElement = successTemplate.cloneNode(true);
-  document.body.append(successElement);
+  document.querySelector('.pop-up').remove();
+  document.removeEventListener('keydown', onEscPopUp);
+};
 
-  successElement.querySelector('.success__button').addEventListener('click', () => {
-    closeSuccess();
-  });
-  successElement.addEventListener('click', (evt) => {
-    console.log(evt.target);
-    if (evt.target.classList.contains('success')) {
-      closeSuccess();
+const showPopUp = (popUp) => {
+  const popUpElement = popUpTemplates[popUp].cloneNode(true);
+  popUpElement.classList.add('pop-up');
+  popUpElement.addEventListener('click', (evt) => {
+    if (evt.target.classList.contains('pop-up')) {
+      closePopUp();
     }
   });
-  document.addEventListener('keydown', onEscapeSuccess)
-}
 
-const showError = () => {
+  const popUpBtn = popUpElement.querySelector(`.${popUp}__button`);
 
-}
+  popUpBtn.addEventListener('click', () => {
+    closePopUp();
+  });
 
-function onEscapeSuccess(evt) {
+  document.addEventListener('keydown', onEscPopUp);
+
+  document.body.append(popUpElement);
+  if (popUp === 'error') {
+    document.removeEventListener('keydown', onEscapeForm);
+  }
+};
+
+function onEscPopUp(evt) {
   if (evt.key === 'Escape') {
-    closeSuccess();
-    document.removeEventListener('keydown', onEscapeSuccess)
+    closePopUp();
   }
 }
 
-
-const closeError = () => {
-
-}
-
-export { showSuccess, showError }
+export { showPopUp };

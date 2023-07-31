@@ -11,19 +11,19 @@ const imagePreview = document.querySelector('.img-upload__preview img');
 
 let scale = 100;
 
+const renderImg = () => {
+  imagePreview.style.transform = `scale(${scale * 0.01})`;
+};
+
+const renderValue = () => {
+  valueField.value = `${scale}%`;
+};
 
 const resetScale = () => {
   scale = 100;
   renderValue();
   renderImg();
 };
-const renderValue = () => {
-  valueField.value = `${scale}%`
-}
-
-const renderImg = () => {
-  imagePreview.style.transform = `scale(${scale * 0.01})`;
-}
 
 minusBtn.addEventListener('click', () => {
   scale = scale - STEP_SCALE >= MIN_SCALE_VALUE ? scale - STEP_SCALE : MIN_SCALE_VALUE;
@@ -36,4 +36,5 @@ plusBtn.addEventListener('click', () => {
   renderValue();
   renderImg();
 });
-export { resetScale }
+
+export { resetScale };
