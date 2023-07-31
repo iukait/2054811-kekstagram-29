@@ -40,13 +40,6 @@ const getPhoto = () => ({
   comments: getComments(getRandomInteger(MIN_COMMENTS, MAX_COMMENTS))
 });
 
-// const getPhotos = (amount) => {
-//   const arr = [];
-//   for (let i = 0; i < amount; i++) {
-//     arr.push(getPhoto())
-//   }
-//   return arr;
-// };
 const getPhotos = (n) => Array.from({ length: n }, getPhoto);
 
 export { getPhotos };
